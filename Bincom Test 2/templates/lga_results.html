@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LGA Result</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</html>
+<body>
+    <h1>LGA Result</h1>
+    <form method="post">
+        <label for="lga_id">Select LGA:</label>
+        <select name="lga_id" id="lga_id">
+            {% for lga_id, lga_name in lgas %}
+            <option value="{{ lga_id }}">{{ lga_name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Get Result">
+    </form>
+
+    {% if result %}
+    <table>
+        <tr>
+            <th>Party</th>
+            <th>Total Score</th>
+        </tr>
+        {% for row in result %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
